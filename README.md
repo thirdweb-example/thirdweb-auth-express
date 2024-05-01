@@ -1,7 +1,5 @@
 # React + Express Auth Starter Template
 
----
-
 The template is a standard monorepo separated into a client and a server. The client is a React app using Vite and the server is an Express app. Both the server and client use TypeScript and Bun (can be substituted for npm, yarn, or pnpm).
 
 The client uses thirdweb's Auth SDK to communicate with the server via user-defined routes. When a user is authenticated, the server returns a JWT which the client can cache for future requests. Thirdweb's Auth SDK takes care of the difficult pieces like payload generation and signing while allowing you to control how authentication happens between your backend and frontend.

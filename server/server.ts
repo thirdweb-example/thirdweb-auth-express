@@ -1,11 +1,13 @@
 import express from "express";
 import cors from "cors";
+import cookieParser from "cookie-parser";
 import { createAuth, type VerifyLoginPayloadParams } from "thirdweb/auth";
 import { privateKeyToAccount } from "thirdweb/wallets";
 import { thirdwebClient } from "./thirdwebClient";
 
 const app = express();
 app.use(express.json());
+app.use(cookieParser());
 app.use(
 	cors({
 		origin: `${
@@ -51,6 +53,7 @@ app.post("/login", async (req, res) => {
 		const jwt = await thirdwebAuth.generateJWT({
 			payload: verifiedPayload.payload,
 		});
+		res.cookie("jwt", jwt);
 		return res.status(200).send({ token: jwt });
 	}
 
@@ -58,7 +61,7 @@ app.post("/login", async (req, res) => {
 });
 
 app.get("/isLoggedIn", async (req, res) => {
-	const jwt = req.headers.authorization;
+	const jwt = req.cookies?.jwt;
 
 	if (!jwt) {
 		return res.send(false);
@@ -70,6 +73,11 @@ app.get("/isLoggedIn", async (req, res) => {
 		return res.send(false);
 	}
 
+	return res.send(true);
+});
+
+app.post("/logout", (req, res) => {
+	res.clearCookie("jwt");
 	return res.send(true);
 });
 

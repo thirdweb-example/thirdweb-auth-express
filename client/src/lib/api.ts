@@ -1,7 +1,3 @@
-import axios from "axios";
-
-axios.defaults.withCredentials = true;
-
 type GetOptions = {
 	url: string;
 	params?: Record<string, string>;
@@ -9,21 +5,39 @@ type GetOptions = {
 };
 
 export async function get({ url, params, headers }: GetOptions) {
-	const response = await axios.get(url + "?" + new URLSearchParams(params), {
+	const response = await fetch(url + "?" + new URLSearchParams(params), {
+		method: "GET",
 		headers,
+		credentials: "include",
 	});
 
-	return response.data;
+	if (!response.ok) {
+		throw new Error(response.statusText);
+	}
+
+	return await response.json();
 }
 
 type PostOptions = {
 	url: string;
-	params: Record<string, unknown>;
+	params?: Record<string, unknown>;
 	headers?: Record<string, string>;
 };
 
 export async function post({ url, params, headers }: PostOptions) {
-	const response = await axios.post(url, params, { headers });
+	const response = await fetch(url, {
+		method: "POST",
+		headers: {
+			"Content-Type": "application/json",
+			...headers,
+		},
+		body: JSON.stringify(params ?? {}),
+		credentials: "include",
+	});
 
-	return response.data;
+	if (!response.ok) {
+		throw new Error(response.statusText);
+	}
+
+	return await response.json();
 }
