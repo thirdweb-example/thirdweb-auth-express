@@ -1,5 +1,5 @@
 ![Group 1](https://github.com/thirdweb-example/thirdweb-auth-express/assets/17715009/06383e68-9c65-4265-8505-e88e573443f9)
-React + Express Auth Starter Template
+# React + Express Auth Starter Template
 
 The template is a standard monorepo separated into a client and a server. The client is a React app using Vite and the server is an Express app. Both the server and client use TypeScript and Bun (can be substituted for npm, yarn, or pnpm).
 
