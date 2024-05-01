@@ -1,0 +1,7 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.tw-gradient {
+	@apply bg-gradient-to-tl from-[#6200C6] to-[#FF00A8];
+}
