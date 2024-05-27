@@ -66,3 +66,13 @@ On the server, `server.ts` handles all routes for the app. The SDK provides a nu
 -   `verifyPayload` verifies the user's signed payload to either log them in, or reject the attempt.
 -   `generateJWT` won't always be needed, but is a helpful function to generate a JWT for the user to use as in cookies or client-side storage to cache the user's session
 -   `verifyJWT` checks if a given JWT is valid when authenticating requests.
+
+## Documentation
+
+-   [TypeScript SDK](https://portal.thirdweb.com/typescript/v5)
+-   [Sign in with Ethereum Spec](https://eips.ethereum.org/EIPS/eip-4361)
+-   [Express Docs](https://expressjs.com/)
+
+## Support
+
+For help or feedback, please [visit our support site](https://thirdweb.com/support)
